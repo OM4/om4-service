@@ -106,13 +106,16 @@ class OM4_Service {
 			);
 		}
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-videos',
-				'title' => 'How To Videos',
-				'href' => admin_url( 'admin.php?page=video-user-manuals/plugin.php' ),
-				'parent' => 'om4-service'
-			)
-		);
+		if ( class_exists( 'Vum' ) ) {
+			// Video User Manuals is activated.
+			$wp_admin_bar->add_node( array(
+					'id' => 'om4-service-videos',
+					'title' => 'How To Videos',
+					'href' => admin_url( 'admin.php?page=video-user-manuals/plugin.php' ),
+					'parent' => 'om4-service'
+				)
+			);
+		}
 
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-articles',
