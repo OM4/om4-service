@@ -2,7 +2,7 @@
 /*
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
-Description: OM4 Service Desk
+Description: OM4 Service Desk integration into the WordPress dashboard.
 Version: 1.0.0
 Author: OM4
 Author URI: http://om4.com.au/
@@ -32,7 +32,7 @@ License: GPLv2
 */
 
 /**
- *
+ * - Adds "OM4 Service" button to the WordPress toolbar/menu
  */
 class OM4_Service {
 
