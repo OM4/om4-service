@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
 Description: OM4 Service Desk integration into the WordPress dashboard.
-Version: 1.0.0
+Version: 1.0.1
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: om4-service
@@ -36,33 +36,33 @@ License: GPLv2
  */
 class OM4_Service {
 
-	public static function Initialise() {
-		add_action( 'plugins_loaded', array( __CLASS__ , 'PluginsLoaded') ) ;
-		add_action( 'init', array( __CLASS__ , 'Init') ) ;
+	public static function initialise() {
+		add_action( 'plugins_loaded', array( __CLASS__ , 'plugins_loaded') ) ;
+		add_action( 'init', array( __CLASS__ , 'init') ) ;
 	}
 
-	public static function PluginsLoaded() {
+	public static function plugins_loaded() {
 
 		// Only for Authors (and above)
 		if ( current_user_can('edit_posts') && apply_filters('om4_wordpress_dashboard_om4_support', true) ) {
 
 			// Display OM4 support desk button in WP Admin toolbar (both in the dashboard and on the website front end)
-			add_action( 'admin_bar_menu', array( __CLASS__ , 'AdminBarMenu'), 999 ) ;
+			add_action( 'admin_bar_menu', array( __CLASS__ , 'admin_bar_menu'), 999 ) ;
 
 			// Don't display support desk feedback button on iframe/popup screens
 			if (! defined('IFRAME_REQUEST') && ! defined('DOING_AJAX') ) {
 				// Display in WordPress dashboard
-				add_action( 'admin_print_footer_scripts', array( __CLASS__ , 'SupportDeskFeedbackTab') ) ;
+				add_action( 'admin_print_footer_scripts', array( __CLASS__ , 'admin_print_footer_scripts') ) ;
 				// Display when viewing the WordPress website while logged in
-				add_action( 'wp_footer', array( __CLASS__ , 'SupportDeskFeedbackTab') ) ;
+				add_action( 'wp_footer', array( __CLASS__ , 'admin_print_footer_scripts') ) ;
 			}
 
 		}
 	}
 
-	public function Init() {
-		if ( ! self::WebsiteGuidePageID( false ) )
-			add_action( 'save_post', array( __CLASS__, 'SavePost' ), 10, 2 );
+	public function init() {
+		if ( ! self::website_guide_page_id( false ) )
+			add_action( 'save_post', array( __CLASS__, 'save_post' ), 10, 2 );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class OM4_Service {
 	 *
 	 * @param $wp_admin_bar
 	 */
-	public static function AdminBarMenu($wp_admin_bar) {
+	public static function admin_bar_menu($wp_admin_bar) {
 
 		// Google Analytics Link Tags
 		// Ref: https://support.google.com/urchin/answer/2633614?hl=en
@@ -92,7 +92,7 @@ class OM4_Service {
 		);
 
 		// Add a link to the Website Guide page (if it exists)
-		$guide_page_url = self::WebsiteGuidePageURL();
+		$guide_page_url = self::website_guide_page_url();
 		if ( !empty( $guide_page_url ) ) {
 			$wp_admin_bar->add_node( array(
 					'id' => 'om4-service-website-guide',
@@ -200,7 +200,7 @@ class OM4_Service {
 	 * @param bool $update_if_not_cached Whether or not to attempt to search for the page if it isn't cached
 	 * @return int Page ID of existing page, or 0 if no Website Guide page exists.
 	 */
-	public static function WebsiteGuidePageID( $update_if_not_cached = true ) {
+	public static function website_guide_page_id( $update_if_not_cached = true ) {
 		$guide_page_id = get_transient( 'website_guide_page_id' );
 		if ( false === $guide_page_id && $update_if_not_cached ) {
 			// Data not in cache
@@ -222,7 +222,7 @@ class OM4_Service {
 				// Cache a zero value so we don't keep re-checking on every page load
 				$guide_page_id = 0;
 			}
-			self::SetWebsiteGuidePageID( $guide_page_id );
+			self::set_website_guide_page_id( $guide_page_id );
 		}
 		return intval( $guide_page_id );
 	}
@@ -234,7 +234,7 @@ class OM4_Service {
 	 *
 	 * @return bool
 	 */
-	public static function SetWebsiteGuidePageID( $page_id ) {
+	public static function set_website_guide_page_id( $page_id ) {
 		if ( false === $page_id ) {
 			// Clear the existing stored page ID
 			delete_transient( 'website_guide_page_id' );
@@ -253,10 +253,10 @@ class OM4_Service {
 	 * @param $post_id int
 	 * @param $post WP_Post
 	 */
-	public static function SavePost( $post_id, $post ) {
+	public static function save_post( $post_id, $post ) {
 		if ( 'page' === get_post_type( $post ) ) {
-			self::SetWebsiteGuidePageID( false );
-			self::WebsiteGuidePageID();
+			self::set_website_guide_page_id( false );
+			self::website_guide_page_id();
 		}
 	}
 
@@ -265,8 +265,8 @@ class OM4_Service {
 	 *
 	 * @return string URL, or empty string if there is no guide page
 	 */
-	public static function WebsiteGuidePageURL() {
-		$guide_page_id = self::WebsiteGuidePageID();
+	public static function website_guide_page_url() {
+		$guide_page_id = self::website_guide_page_id();
 		if ( $guide_page_id > 0 ) {
 			$guide_page_url = get_permalink( $guide_page_id );
 			if ( !empty( $guide_page_url ) )
@@ -278,7 +278,7 @@ class OM4_Service {
 	/**
 	 * Add the OM4 Support Desk feedback button to the WP dashboard and frontend when logged in.
 	 */
-	public static function SupportDeskFeedbackTab() {
+	public static function admin_print_footer_scripts() {
 		$current_user = wp_get_current_user();
 	?>
 	<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.4/zenbox.js"></script>
@@ -334,4 +334,4 @@ class OM4_Service {
 	}
 }
 
-OM4_Service::Initialise();
+OM4_Service::initialise();
