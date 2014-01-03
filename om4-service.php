@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
 Description: OM4 Service Desk integration into the WordPress dashboard.
-Version: 1.0.1
+Version: 1.1
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: om4-service
@@ -120,7 +120,7 @@ class OM4_Service {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-articles',
 				'title' => 'How To Articles',
-				'href' => "http://support.om4.com.au/forums{$utm_variables}how-to-articles",
+				'href' => "http://my.om4.com.au/knowledgebase.php{$utm_variables}how-to-articles",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -131,11 +131,10 @@ class OM4_Service {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-ask-question',
 				'title' => 'Ask a Question',
-				'href' => "http://support.om4.com.au/{$utm_variables}ask-question",
+				'href' => "https://my.om4.com.au/submitticket.php{$utm_variables}ask-question",
 				'parent' => 'om4-service',
 				'meta'   => array(
-					'target' => '_blank',
-					'class' => 'zenboxclick'
+					'target' => '_blank'
 				)
 			)
 		);
@@ -165,7 +164,7 @@ class OM4_Service {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-policy',
 				'title' => 'Service Policy',
-				'href' => "http://support.om4.com.au/entries/21921145-Service-Policy{$utm_variables}service-policy",
+				'href' => "http://my.om4.com.au/knowledgebase/225/Web-Assist-Policy.html{$utm_variables}service-policy",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -276,44 +275,10 @@ class OM4_Service {
 	}
 
 	/**
-	 * Add the OM4 Support Desk feedback button to the WP dashboard and frontend when logged in.
+	 * Custom CSS rules to style the menu
 	 */
 	public static function admin_print_footer_scripts() {
-		$current_user = wp_get_current_user();
-	?>
-	<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.4/zenbox.js"></script>
-	<style type="text/css" media="screen, projection">
-		@import url(//assets.zendesk.com/external/zenbox/v2.4/zenbox.css);
-	</style>
-	<script type="text/javascript">
-		if (typeof(Zenbox) !== "undefined") {
-			Zenbox.init({
-				dropboxID:   "20059832",
-				url:         "https://om4.zendesk.com",
-				tabID:       "support",
-//				tabImageURL: "http://media.om4hub.com/support-desk.png",
-				tabColor:    "transparent",
-				tabPosition: "Right",
-				requester_name: <?php echo json_encode(esc_attr($current_user->display_name) ); ?>,
-				requester_email: <?php echo json_encode( esc_attr($current_user->user_email) ); ?>,
-				hide_tab: 'true' // Hide the default support button, which is obtrusive. We use a Admin Toolbar menu instead.
-			});
-		}
-
-		// Display the Zendesk popup window when the toolbar buttons are clicked
-		jQuery(document).ready(function($) {
-			$("#wpadminbar li.zenboxclick > a").click(function(e) {
-				if ( typeof(window.Zenbox) !== 'undefined' ) {
-					window.Zenbox.show();
-					e.preventDefault();
-				} else {
-					// For some reason the Zendesk button didn't load, so the normal link to support.om4.com.au will occur.
-				}
-			});
-		});
-
-
-	</script>
+		?>
 	<style type="text/css">
 		<!--
 
