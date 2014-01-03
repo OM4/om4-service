@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
 Description: OM4 Service Desk integration into the WordPress dashboard.
-Version: 1.1.1
+Version: 1.1.2
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: om4-service
@@ -131,7 +131,7 @@ class OM4_Service {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-ask-question',
 				'title' => 'Ask a Question',
-				'href' => "https://my.om4.com.au/clientarea.php{$utm_variables}ask-question",
+				'href' => "https://my.om4.com.au/submitticket.php{$utm_variables}ask-question",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
