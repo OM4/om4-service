@@ -77,6 +77,7 @@ class OM4_Service {
 
 		require( $this->inc_dir . '/OM4_Plugin_Base.php' );
 
+		$this->load( 'OM4_Revisions.php' );
 		$this->load( 'OM4_Service_Desk.php' );
 
 	}
