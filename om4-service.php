@@ -108,6 +108,20 @@ class OM4_Service {
 	}
 
 	/**
+	 * Check whether the plugin is active.
+	 *
+	 * @param string $plugin Base plugin path from plugins directory
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_active( $plugin ) {
+		if ( ! function_exists( ('is_plugin_active') ) ) {
+			include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+		}
+		return is_plugin_active( $plugin );
+	}
+
+	/**
 	 * Flush all caches.
 	 *
 	 * This includes WP Engine caches or W3 Total Cache caches.

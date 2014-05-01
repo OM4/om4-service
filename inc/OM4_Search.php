@@ -2,7 +2,7 @@
 /**
  * Modifications to the WordPress search functionality.
  *
- * Exclude admin pages from search results
+ * Exclude admin pages from search results.
  */
 class OM4_Search extends OM4_Plugin_Base {
 
