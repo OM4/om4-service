@@ -2,7 +2,7 @@
 /*
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
-Description: OM4 Service integration into the WordPress dashboard. Should be kept active when having an OM4 Web Assist subscription.
+Description: OM4 Service / Web Assist integration.
 Version: 1.1-dev
 Author: OM4
 Author URI: http://om4.com.au/
