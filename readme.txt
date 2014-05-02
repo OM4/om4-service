@@ -14,6 +14,7 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 * Automatically flushes caches (WP Engine or W3TC) whenever:
 	* Custom CSS rules are saved.
 	* Header rules are saved.
+	* Members Only settings/options are saved.
 * Automatically overrides WordPress' revisions limit to 5 per post/page (even on WP Engine sites where revisions are disabled by default)
 * Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results.
 
