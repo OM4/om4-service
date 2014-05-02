@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
 Description: OM4 Service / Web Assist integration. Also improves default WordPress functionality.
-Version: 1.1-dev
+Version: 1.2-dev
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: om4-service
@@ -105,7 +105,7 @@ class OM4_Service {
 	 * @return bool
 	 */
 	public static function is_wp_engine() {
-		return ( class_exists( 'WPE_API', false ) );
+		return ( class_exists( 'WpeCommon', false ) );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class OM4_Service {
 			// W3 Total Cache is active, so flush the page cache
 			w3tc_pgcache_flush();
 
-		} else if ( self::is_wp_engine() && class_exists( 'WpeCommon' ) ) {
+		} else if ( self::is_wp_engine() ) {
 			// Running on WP Engine, so flush their caches
 
 			if ( method_exists( 'WpeCommon', 'purge_memcached' ) ) {
