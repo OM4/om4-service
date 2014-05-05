@@ -17,12 +17,16 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 	* Members Only settings/options are saved.
 * Automatically overrides WordPress' revisions limit to 5 per post/page (even on WP Engine sites where revisions are disabled by default)
 * Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results.
+* Ensure Gravatars/Avatars don't have an empty alt tag.
 
 == Installation ==
 
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.2.1 =
+* Ensure Gravatars/Avatars don't have an empty alt tag.
 
 = 1.2 =
 * Code improvements.
