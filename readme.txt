@@ -2,7 +2,7 @@
 Tags: OM4, cache, revisions, service
 Requires at least: 3.7
 Tested up to: 3.9
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 
 = 1.2.1 =
 * Ensure Gravatars/Avatars don't have an empty alt tag.
+* Wrap nav menus in <span> tags.
 
 = 1.2 =
 * Code improvements.
