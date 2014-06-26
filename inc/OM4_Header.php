@@ -9,7 +9,7 @@ class OM4_Header extends OM4_Plugin_Base {
 	public function plugins_loaded() {
 
 		/*
-		 * Disable the rel=prev and rel=next links in <head> section.
+		 * Remove the rel=prev and rel=next links from the <head> section.
 		 * Otherwise hidden/private/admin pages can be found easily.
 		 * (This is already done for sites using Yoast's SEO plugin, but it should be done on all sites regardless).
 		 */

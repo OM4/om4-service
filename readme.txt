@@ -1,8 +1,8 @@
 === OM4 Service ===
 Tags: OM4, cache, revisions, service
 Requires at least: 3.7
-Tested up to: 3.9
-Stable tag: 1.2.1
+Tested up to: 3.9.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,12 +18,16 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 * Automatically overrides WordPress' revisions limit to 5 per post/page (even on WP Engine sites where revisions are disabled by default)
 * Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results.
 * Ensure Gravatars/Avatars don't have an empty alt tag.
+* Remove the rel=prev and rel=next links from the <head> section.
 
 == Installation ==
 
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.2.2 =
+* Remove the rel=prev and rel=next links from the <head> section
 
 = 1.2.1 =
 * Ensure Gravatars/Avatars don't have an empty alt tag.
