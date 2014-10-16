@@ -1,8 +1,8 @@
 === OM4 Service ===
 Tags: OM4, cache, revisions, service
 Requires at least: 3.7
-Tested up to: 3.9.1
-Stable tag: 1.2.2
+Tested up to: 4.0
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,8 +26,11 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 
 == Changelog ==
 
+= 1.2.3 =
+* If the Imsanity plugin is active, set the default settings to 2560x2560 (instead of 1280x1280).
+
 = 1.2.2 =
-* Remove the rel=prev and rel=next links from the <head> section
+* Remove the rel=prev and rel=next links from the <head> section.
 
 = 1.2.1 =
 * Ensure Gravatars/Avatars don't have an empty alt tag.
