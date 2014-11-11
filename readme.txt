@@ -26,6 +26,10 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 
 == Changelog ==
 
+= 1.2.4 =
+* Detect website guide pages if using .html page extensions.
+* Revise OM4 Service links.
+
 = 1.2.3 =
 * If the Imsanity plugin is active, set the default settings to 2560x2560 (instead of 1280x1280).
 

@@ -72,6 +72,20 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			);
 		}
 
+
+		if ( OM4_Service::is_wp_engine() ) {
+			$wp_admin_bar->add_node( array(
+					'id' => 'om4-wpe-hosting-security',
+					'title' => 'WP Engine Hosting &amp; Security',
+					'href' => "http://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
+					'parent' => 'om4-service',
+					'meta'   => array(
+						'target' => '_blank'
+					)
+				)
+			);
+		}
+
 		if ( class_exists( 'Vum' ) ) {
 			// Video User Manuals is activated.
 			$wp_admin_bar->add_node( array(
@@ -106,9 +120,9 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		);
 
 		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-service',
-				'title' => 'Request a Service',
-				'href' => "http://om4.com.au/services/request/{$utm_variables}request-service",
+				'id' => 'om4-webinars',
+				'title' => 'Webinars &amp; Masterclasses',
+				'href' => "http://om4.com.au/events/{$utm_variables}webinars",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -117,9 +131,9 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		);
 
 		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-education',
-				'title' => 'Request Education',
-				'href' => "http://om4.com.au/services/education/{$utm_variables}request-education",
+				'id' => 'om4-virtual-assistant',
+				'title' => 'Virtual Assistant - Get it Done',
+				'href' => "http://om4.com.au/services/clients/{$utm_variables}virtual-assistant",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -130,7 +144,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-policy',
 				'title' => 'Service Policy',
-				'href' => "http://my.om4.com.au/knowledgebase/225/Web-Assist-Policy.html{$utm_variables}service-policy",
+				'href' => "http://my.om4.com.au/knowledgebase/225/Service-Policy.html{$utm_variables}service-policy",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -173,7 +187,8 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			$urls_to_try = array(
 				'/admin/guide/', // Latest URL format for guide page
 				'/admin/styling/', // Older sites use this URL
-				'/admin/style-guide/' // Some old sites may even use this URL
+				'/admin/style-guide/', // Some old sites may even use this URL
+				'/admin/guide.html' // Some sites may have the .html extension
 			);
 			foreach ( $urls_to_try as $url ) {
 				$page_id = url_to_postid( $url );
