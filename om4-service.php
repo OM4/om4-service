@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: http://om4.com.au/wordpress-plugins/
 Description: OM4 Service / Web Assist integration. Also improves default WordPress functionality.
-Version: 1.2.3
+Version: 1.2.4
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: om4-service
