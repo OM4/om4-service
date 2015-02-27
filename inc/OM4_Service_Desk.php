@@ -122,7 +122,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-webinars',
 				'title' => 'Webinars &amp; Masterclasses',
-				'href' => "http://om4.com.au/events/{$utm_variables}webinars",
+				'href' => "https://om4.com.au/events/{$utm_variables}webinars",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -133,7 +133,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-virtual-assistant',
 				'title' => 'Virtual Assistant - Get it Done',
-				'href' => "http://om4.com.au/services/clients/{$utm_variables}virtual-assistant",
+				'href' => "https://om4.com.au/services/clients/{$utm_variables}virtual-assistant",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'

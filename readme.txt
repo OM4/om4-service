@@ -28,6 +28,7 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 
 = 1.2.5 =
 * WordPress 4.1 compatibility.
+* Readme updates.
 
 = 1.2.4 =
 * Detect website guide pages if using .html page extensions.
