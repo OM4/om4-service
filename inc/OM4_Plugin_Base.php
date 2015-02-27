@@ -153,7 +153,7 @@ class OM4_Plugin_Base {
 
 			$option_name = str_replace( 'pre_option_', '', $function_name );
 			$function_to_call = 'option_' . $option_name;
-			call_user_func_array( array( $this, $function_to_call ), $args );
+			return call_user_func_array( array( $this, $function_to_call ), $args );
 
 		} else if ( 0 === strpos( $function_name, 'default_option_' ) ) {
 
@@ -161,7 +161,7 @@ class OM4_Plugin_Base {
 
 			$option_name = str_replace( 'default_option_', '', $function_name );
 			$function_to_call = 'default_option_' . $option_name;
-			call_user_func_array( array( $this, $function_to_call ), $args );
+			return call_user_func_array( array( $this, $function_to_call ), $args );
 
 		} else {
 
