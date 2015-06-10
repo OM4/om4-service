@@ -74,28 +74,15 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-shop',
-				'title' => 'OM4 Shop',
-				'href' => "https://om4.com.au/shop/{$utm_variables}shop",
+				'title' => 'OM4 Services',
+				'href' => "https://om4.com.au/shop/{$utm_variables}services",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank',
-					'title' => 'Improve Your Website with Bite-Size Add-Ons &amp; Services'
+					'title' => 'Improve Your Website with Bite-Size Add-Ons &amp; Services from OM4'
 				)
 			)
 		);
-
-		if ( OM4_Service::is_wp_engine() ) {
-			$wp_admin_bar->add_node( array(
-					'id' => 'om4-wpe-hosting-security',
-					'title' => 'WP Engine Hosting &amp; Security',
-					'href' => "http://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
-					'parent' => 'om4-service',
-					'meta'   => array(
-						'target' => '_blank'
-					)
-				)
-			);
-		}
 
 		if ( class_exists( 'Vum' ) ) {
 			// Video User Manuals is activated.
@@ -121,11 +108,22 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-ask-question',
-				'title' => 'Ask a Question',
+				'title' => 'Ask a How To Question',
 				'href' => "https://my.om4.com.au/submitticket.php{$utm_variables}ask-question",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
+				)
+			)
+		);
+
+		$wp_admin_bar->add_node( array(
+						'id' => 'om4-virtual-assistant',
+						'title' => 'Request a Task',
+						'href' => "https://om4.com.au/shop/{$utm_variables}request-task#requestservice",
+						'parent' => 'om4-service',
+						'meta'   => array(
+							'target' => '_blank'
 				)
 			)
 		);
@@ -141,16 +139,19 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			)
 		);
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-virtual-assistant',
-				'title' => 'Virtual Assistant - Get it Done',
-				'href' => "https://om4.com.au/services/clients/{$utm_variables}virtual-assistant",
-				'parent' => 'om4-service',
-				'meta'   => array(
-					'target' => '_blank'
+
+		if ( OM4_Service::is_wp_engine() ) {
+			$wp_admin_bar->add_node( array(
+					'id' => 'om4-wpe-hosting-security',
+					'title' => 'WP Engine Hosting &amp; Security',
+					'href' => "http://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
+					'parent' => 'om4-service',
+					'meta'   => array(
+						'target' => '_blank'
+					)
 				)
-			)
-		);
+			);
+		}
 
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-policy',
