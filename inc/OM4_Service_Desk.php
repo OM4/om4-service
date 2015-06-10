@@ -120,7 +120,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 						'id' => 'om4-virtual-assistant',
 						'title' => 'Request a Task',
-						'href' => "https://om4.com.au/shop/{$utm_variables}request-task#requestservice",
+						'href' => "https://om4.com.au/services/clients/{$utm_variables}request-task",
 						'parent' => 'om4-service',
 						'meta'   => array(
 							'target' => '_blank'
