@@ -72,6 +72,17 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			);
 		}
 
+		$wp_admin_bar->add_node( array(
+				'id' => 'om4-shop',
+				'title' => 'OM4 Shop',
+				'href' => "https://om4.com.au/shop/{$utm_variables}shop",
+				'parent' => 'om4-service',
+				'meta'   => array(
+					'target' => '_blank',
+					'title' => 'Improve Your Website with Bite-Size Add-Ons &amp; Services'
+				)
+			)
+		);
 
 		if ( OM4_Service::is_wp_engine() ) {
 			$wp_admin_bar->add_node( array(
