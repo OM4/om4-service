@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: OM4 Service
-Plugin URI: http://om4.com.au/wordpress-plugins/
+Plugin URI: https://om4.com.au/wordpress-plugins/
 Description: OM4 Service / Web Assist integration. Also improves default WordPress functionality.
-Version: 1.2.4
+Version: 1.2.6
 Author: OM4
-Author URI: http://om4.com.au/
+Author URI: https://om4.com.au/
 Text Domain: om4-service
 Git URI: https://github.com/OM4/om4-service
 Git Branch: release
@@ -14,7 +14,7 @@ License: GPLv2
 
 /*
 
-   Copyright 2012-2014 OM4 (email: info@om4.com.au    web: http://om4.com.au/)
+   Copyright 2012-2015 OM4 (email: info@om4.com.au    web: https://om4.com.au/)
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
