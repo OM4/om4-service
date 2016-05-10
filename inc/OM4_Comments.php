@@ -19,6 +19,8 @@ class OM4_Comments extends OM4_Plugin_Base {
 				if ( $user && isset( $user->display_name ) ) {
 					$author = $user->display_name;
 				}
+			} else if ( "" == $id_or_email ) {
+				return $avatar;
 			}
 			if ( empty($author) ) {
 				$author = get_comment_author( $id_or_email );

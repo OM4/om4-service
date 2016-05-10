@@ -26,6 +26,9 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 
 == Changelog ==
 
+= 1.2.7 =
+* Avoid PHP notice for comments with no author.
+
 = 1.2.6 =
 * WordPress 4.4 compatibility.
 * Revise OM4 Service links.
