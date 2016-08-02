@@ -19,6 +19,8 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 * Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results.
 * Ensure Gravatars/Avatars don't have an empty alt tag.
 * Remove the rel=prev and rel=next links from the <head> section.
+* If the Imsanity plugin is active, set the default settings to 2560x2560 (instead of 1280x1280).
+* Automatically wrap WordPress 3+ nav menu items in a <span> tag.
 
 == Installation ==
 
