@@ -174,11 +174,11 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		);
 
 		foreach ( $default_wordpress_menu_items as $node_id => $prepend_wordpress_org_to_title ) {
-			$node = $wp_admin_bar->get_node($node_id);
-			$wp_admin_bar->remove_node($node_id);
+			$node = $wp_admin_bar->get_node( $node_id );
+			$wp_admin_bar->remove_node( $node_id );
 			if ( $prepend_wordpress_org_to_title )
 				$node->title = 'WordPress.org ' . $node->title;
-			$wp_admin_bar->add_node($node);
+			$wp_admin_bar->add_node( $node );
 		}
 	}
 

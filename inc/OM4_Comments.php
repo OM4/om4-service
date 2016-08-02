@@ -19,12 +19,16 @@ class OM4_Comments extends OM4_Plugin_Base {
 				if ( $user && isset( $user->display_name ) ) {
 					$author = $user->display_name;
 				}
+			} else if ( "" == $id_or_email ) {
+				return $avatar;
 			}
-			if ( empty($author) ) {
+			if ( empty($author) && ( is_numeric( $id_or_email ) || is_a( $id_or_email, 'WP_Comment' ) ) ) {
+				// $id_or_email is a comment ID or WP_Comment object
 				$author = get_comment_author( $id_or_email );
 			}
 
-			$alt = esc_attr( sprintf( __( 'Avatar for %s', 'om4-service' ), $author ) );
+			$alt = empty( $author ) ? __( 'Avatar', 'om4-service' ) : sprintf( __( 'Avatar for %s', 'om4-service' ), $author );
+			$alt = esc_attr( $alt );
 			$avatar = str_replace( "alt=''", "alt='$alt'", $avatar );
 		}
 		return $avatar;
