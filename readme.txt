@@ -6,7 +6,7 @@ Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-OM4 Service / Web Assist integration. Also improves default WordPress functionality.
+OM4 Service Desk integration. Also improves default WordPress functionality.
 
 == Description ==
 
@@ -29,6 +29,7 @@ OM4 Service / Web Assist integration. Also improves default WordPress functional
 = 1.2.7 =
 * Avoid PHP notice for comments with no author.
 * Avoid PHP notice for comments where the author is just an email address.
+* Mark as compatible with WordPress 4.5.x.
 
 = 1.2.6 =
 * WordPress 4.4 compatibility.

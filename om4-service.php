@@ -2,7 +2,7 @@
 /*
 Plugin Name: OM4 Service
 Plugin URI: https://om4.com.au/plugins/
-Description: OM4 Service / Web Assist integration. Also improves default WordPress functionality.
+Description: Adds the OM4 Service orange button to the WordPress dashboard. Also improves default WordPress functionality.
 Version: 1.2.7
 Author: OM4
 Author URI: https://om4.com.au/plugins/
