@@ -16,7 +16,7 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 	* Header rules are saved.
 	* Members Only settings/options are saved.
 * Automatically overrides WordPress' revisions limit to 5 per post/page (even on WP Engine sites where revisions are disabled by default)
-* Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results and unauthenticate REST API requests.
+* Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results and unauthenticated REST API requests.
 * Only show image media library items in unauthenticated REST API requests.
 * Ensure Gravatars/Avatars don't have an empty alt tag.
 * Remove the rel=prev and rel=next links from the <head> section.
