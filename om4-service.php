@@ -85,7 +85,7 @@ class OM4_Service {
 		$this->load( 'OM4_Imsanity.php' );
 		$this->load( 'OM4_Menus.php' );
 		$this->load( 'OM4_Revisions.php' );
-		$this->load( 'OM4_Search.php' );
+		$this->load( 'OM4_Exclusions.php' );
 		$this->load( 'OM4_Service_Desk.php' );
 
 	}
