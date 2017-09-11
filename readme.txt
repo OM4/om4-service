@@ -1,8 +1,8 @@
 === OM4 Service ===
-Tags: OM4, cache, revisions, service
-Requires at least: 4.0
-Tested up to: 4.5.2
-Stable tag: 1.2.7
+Tags: OM4, cache, revisions, service, rest api, search
+Requires at least: 4.4
+Tested up to: 4.8.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,9 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 	* Header rules are saved.
 	* Members Only settings/options are saved.
 * Automatically overrides WordPress' revisions limit to 5 per post/page (even on WP Engine sites where revisions are disabled by default)
-* Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results.
+* Automatically exclude all /admin/ pages (and sub-pages) from WordPress search results and unauthenticated REST API requests.
+* Only show image media library items in unauthenticated REST API requests.
+* Disable users endpoints for unauthenticated REST API requests.
 * Ensure Gravatars/Avatars don't have an empty alt tag.
 * Remove the rel=prev and rel=next links from the <head> section.
 * If the Imsanity plugin is active, set the default settings to 2560x2560 (instead of 1280x1280).
@@ -27,6 +29,13 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.4 =
+* Unauthenticated WordPress REST API requests: disable users endpoints.
+
+= 1.3 =
+* WordPress 4.7 compatibility
+* Unauthenticated WordPress REST API requests: exclude admin pages and non image media items.
 
 = 1.2.7 =
 * Avoid PHP notice for comments with no author.
