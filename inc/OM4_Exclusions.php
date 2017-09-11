@@ -3,6 +3,7 @@
  * Exclude admin pages from search results.
  * Exclude admin pages from unauthenticated REST API queries.
  * Exclude non image media library items from unauthenticated REST API queries.
+ * Disable REST API user list from unauthenticated REST API queries.
  */
 class OM4_Exclusions extends OM4_Plugin_Base {
 
@@ -22,6 +23,7 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 
 			$this->filter( 'rest_page_query', 10, 2 );
 			$this->filter( 'rest_attachment_query', 10, 2 );
+			$this->filter( 'rest_endpoints' );
     }
 
 
@@ -138,6 +140,30 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 		}
 
 		return $args;
+	}
+
+	/**
+	 * Disable REST API User endpoints for non logged in users:
+	 * https://example.com/wp-json/wp/v2/users
+	 * https://example.com/wp-json/wp/v2/users/1
+	 * @param $endpoints
+	 *
+	 * @return mixed
+	 */
+	public function rest_endpoints( $endpoints ) {
+
+		if ( current_user_can( 'list_users' ) ) {
+			return $endpoints;
+		}
+
+		if ( isset( $endpoints['/wp/v2/users'] ) ) {
+			unset( $endpoints['/wp/v2/users'] );
+		}
+		if ( isset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] ) ) {
+			unset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+		}
+		return $endpoints;
+
 	}
 
 }
