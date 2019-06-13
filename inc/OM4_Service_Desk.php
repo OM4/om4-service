@@ -36,7 +36,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 	 * Adds an orange "OM4 Service" menu.
 	 * Customises the items in the W (WordPres) menu.
 	 *
-	 * Ref: http://wpdevel.wordpress.com/2011/12/07/admin-bar-api-changes-in-3-3/
+	 * Ref: https://make.wordpress.org/core/2011/12/07/admin-bar-api-changes-in-3-3/
 	 *
 	 * Executed by the 'admin_bar_menu' hook.
 	 *
@@ -98,7 +98,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-articles',
 				'title' => 'How To Articles',
-				'href' => "http://my.om4.com.au/knowledgebase.php{$utm_variables}how-to-articles",
+				'href' => "https://my.om4.com.au/knowledgebase.php{$utm_variables}how-to-articles",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
@@ -144,7 +144,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			$wp_admin_bar->add_node( array(
 					'id' => 'om4-wpe-hosting-security',
 					'title' => 'WP Engine Hosting &amp; Security',
-					'href' => "http://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
+					'href' => "https://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
 					'parent' => 'om4-service',
 					'meta'   => array(
 						'target' => '_blank'
@@ -156,7 +156,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-policy',
 				'title' => 'Service Policy',
-				'href' => "http://my.om4.com.au/knowledgebase/225/Service-Policy.html{$utm_variables}service-policy",
+				'href' => "https://my.om4.com.au/knowledgebase/225/Service-Policy.html{$utm_variables}service-policy",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
