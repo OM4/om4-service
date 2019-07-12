@@ -2,7 +2,7 @@
 Tags: OM4, cache, revisions, service, rest api, search
 Requires at least: 4.4
 Tested up to: 4.8.1
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,9 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.5 =
+* Alert if incompatible plugin active in WP Engin staging / development environment.
 
 = 1.4 =
 * Unauthenticated WordPress REST API requests: disable users endpoints.
