@@ -87,6 +87,7 @@ class OM4_Service {
 		$this->load( 'OM4_Revisions.php' );
 		$this->load( 'OM4_Exclusions.php' );
 		$this->load( 'OM4_Service_Desk.php' );
+		$this->load( 'OM4_WPE.php' );
 
 	}
 
