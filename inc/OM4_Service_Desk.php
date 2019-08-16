@@ -98,7 +98,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-articles',
 				'title' => 'How To Articles',
-				'href' => "https://my.om4.com.au/knowledgebase.php{$utm_variables}how-to-articles",
+				'href' => "https://my.om4.com.au/knowledgebase{$utm_variables}how-to-articles",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
