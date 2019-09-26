@@ -32,6 +32,7 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 
 = 1.5 =
 * Alert if incompatible plugin active in WP Engine staging / development environment.
+* Remove comments /feed/ references as well as category/archive /feed/ references.
 * Update Knowledge Base link.
 
 = 1.4 =
