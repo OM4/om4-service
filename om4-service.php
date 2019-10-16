@@ -79,6 +79,7 @@ class OM4_Service {
 			require( $this->inc_dir . '/OM4_Plugin_Base.php' );
 		}
 
+		$this->load( 'OM4_BeaverBuilder.php' );
 		$this->load( 'OM4_Caches.php' );
 		$this->load( 'OM4_Comments.php' );
 		$this->load( 'OM4_Header.php' );
