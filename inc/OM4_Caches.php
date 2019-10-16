@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Flush/purge caches whenever specific actions/hooks occur
+ * Whenever the following hooks/actions occur, ensure the WP Engine, Beaver Builder and WP-Rocket caches are cleared.
  */
 class OM4_Caches extends OM4_Plugin_Base {
 

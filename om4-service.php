@@ -133,16 +133,11 @@ class OM4_Service {
 	/**
 	 * Flush all caches.
 	 *
-	 * This includes WP Engine caches or W3 Total Cache caches.
+	 * This includes WP Engine caches, Beaver Builder cache and the WP-Rocket Cache.
 	 */
 	public static function cache_flush() {
 
-		if ( function_exists( 'w3tc_pgcache_flush' ) ) {
-
-			// W3 Total Cache is active, so flush the page cache
-			w3tc_pgcache_flush();
-
-		} else if ( self::is_wp_engine() ) {
+		if ( self::is_wp_engine() ) {
 			// Running on WP Engine, so flush their caches
 
 			if ( method_exists( 'WpeCommon', 'purge_memcached' ) ) {
@@ -157,7 +152,31 @@ class OM4_Service {
 
 		}
 
-	}
+        // Clear Beaver Builder caches
+        if ( class_exists( 'FLBuilderModel' ) && method_exists( 'FLBuilderModel', 'delete_asset_cache_for_all_posts' ) ) {
+            FLBuilderModel::delete_asset_cache_for_all_posts();
+        }
+
+        // Clear Beaver Builder Theme cache
+        if ( class_exists( 'FLCustomizer' ) && method_exists( 'FLCustomizer', 'clear_all_css_cache' ) ) {
+            FLCustomizer::clear_all_css_cache();
+        }
+
+        // WP Rocket caches
+        if ( function_exists( 'rocket_clean_domain' ) ) {
+            rocket_clean_domain();
+        }
+        if ( function_exists( 'rocket_clean_minify' ) ) {
+            rocket_clean_minify();
+        }
+        if ( function_exists( 'rocket_clean_cache_busting' ) ) {
+            rocket_clean_cache_busting();
+        }
+        if ( function_exists( 'rocket_generate_advanced_cache_file' ) ) {
+            rocket_generate_advanced_cache_file();
+        }
+
+    }
 
 }
 
