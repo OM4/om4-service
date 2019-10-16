@@ -12,8 +12,9 @@ class OM4_BeaverBuilder extends OM4_Plugin_Base {
 	}
 
     /**
-     * When Beaver Builder generates it's CSS rules, use relative URLs (rather than full URLs)
-     * so that background images are loaded via a CDN if one is being used.
+     * Whenever Beaver Builder generates it's CSS rules, use relative URLs (rather than full URLs)
+     * for files referenced in the CSS so that assets (such as background images) are also loaded
+     * via a CDN if one is being used.
      *
      * @param string $css Beaver Builder's generated CSS rules.
      * @return string
