@@ -2,7 +2,7 @@
 Tags: OM4, cache, revisions, service, rest api, search
 Requires at least: 4.4
 Tested up to: 5.2.2
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 == Description ==
 
 * Adds the OM4 Service orange button to the WordPress dashboard.
-* Automatically flushes caches (WP Engine or W3TC) whenever:
+* Automatically flushes caches (WP Engine, Beaver Builder, WP Rocket) whenever:
 	* Custom CSS rules are saved.
 	* Header rules are saved.
 	* Members Only settings/options are saved.
@@ -23,12 +23,17 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 * Remove the rel=prev and rel=next links from the <head> section.
 * If the Imsanity plugin is active, set the default settings to 2560x2560 (instead of 1280x1280).
 * Automatically wrap WordPress 3+ nav menu items in a <span> tag.
+* Alert if an incompatible plugin is active in WP Engine staging / development environments.
 
 == Installation ==
 
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.6 =
+* Use relative URLs in Beaver Builder’s dynamically generated CSS rules so that background images also load via a CDN.
+* Whenever OM4 Custom CSS rules are saved, also flush the Beaver Builder and WP Rocket caches.
 
 = 1.5 =
 * Alert if incompatible plugin active in WP Engine staging / development environment.

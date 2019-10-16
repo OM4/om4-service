@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: https://om4.com.au/plugins/
 Description: Adds the OM4 Service orange button to the WordPress dashboard. Also improves default WordPress functionality.
-Version: 1.5
+Version: 1.6
 Author: OM4
 Author URI: https://om4.com.au/plugins/
 Text Domain: om4-service
@@ -14,7 +14,7 @@ License: GPLv2
 
 /*
 
-   Copyright 2012-2017 OM4 (email: plugins@om4.com.au    web: https://om4.com.au/)
+   Copyright 2012-2019 OM4 (email: plugins@om4.com.au    web: https://om4.com.au/)
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -79,6 +79,7 @@ class OM4_Service {
 			require( $this->inc_dir . '/OM4_Plugin_Base.php' );
 		}
 
+		$this->load( 'OM4_BeaverBuilder.php' );
 		$this->load( 'OM4_Caches.php' );
 		$this->load( 'OM4_Comments.php' );
 		$this->load( 'OM4_Header.php' );
@@ -132,16 +133,11 @@ class OM4_Service {
 	/**
 	 * Flush all caches.
 	 *
-	 * This includes WP Engine caches or W3 Total Cache caches.
+	 * This includes WP Engine caches, Beaver Builder cache and the WP-Rocket Cache.
 	 */
 	public static function cache_flush() {
 
-		if ( function_exists( 'w3tc_pgcache_flush' ) ) {
-
-			// W3 Total Cache is active, so flush the page cache
-			w3tc_pgcache_flush();
-
-		} else if ( self::is_wp_engine() ) {
+		if ( self::is_wp_engine() ) {
 			// Running on WP Engine, so flush their caches
 
 			if ( method_exists( 'WpeCommon', 'purge_memcached' ) ) {
@@ -156,7 +152,31 @@ class OM4_Service {
 
 		}
 
-	}
+        // Clear Beaver Builder caches
+        if ( class_exists( 'FLBuilderModel' ) && method_exists( 'FLBuilderModel', 'delete_asset_cache_for_all_posts' ) ) {
+            FLBuilderModel::delete_asset_cache_for_all_posts();
+        }
+
+        // Clear Beaver Builder Theme cache
+        if ( class_exists( 'FLCustomizer' ) && method_exists( 'FLCustomizer', 'clear_all_css_cache' ) ) {
+            FLCustomizer::clear_all_css_cache();
+        }
+
+        // WP Rocket caches
+        if ( function_exists( 'rocket_clean_domain' ) ) {
+            rocket_clean_domain();
+        }
+        if ( function_exists( 'rocket_clean_minify' ) ) {
+            rocket_clean_minify();
+        }
+        if ( function_exists( 'rocket_clean_cache_busting' ) ) {
+            rocket_clean_cache_busting();
+        }
+        if ( function_exists( 'rocket_generate_advanced_cache_file' ) ) {
+            rocket_generate_advanced_cache_file();
+        }
+
+    }
 
 }
 
