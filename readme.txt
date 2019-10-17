@@ -31,6 +31,9 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 
 == Changelog ==
 
+= 1.6.1 =
+* Remove OM4 Services link from OM4 Service menu.
+
 = 1.6 =
 * Use relative URLs in Beaver Builder’s dynamically generated CSS rules so that background images also load via a CDN.
 * Whenever OM4 Custom CSS rules are saved, also flush the Beaver Builder and WP Rocket caches.

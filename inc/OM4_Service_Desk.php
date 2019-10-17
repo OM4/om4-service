@@ -72,18 +72,6 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			);
 		}
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-shop',
-				'title' => 'OM4 Services',
-				'href' => "https://om4.com.au/shop/{$utm_variables}services",
-				'parent' => 'om4-service',
-				'meta'   => array(
-					'target' => '_blank',
-					'title' => 'Improve Your Website with Bite-Size Add-Ons &amp; Services from OM4'
-				)
-			)
-		);
-
 		if ( class_exists( 'Vum' ) ) {
 			// Video User Manuals is activated.
 			$wp_admin_bar->add_node( array(
@@ -156,7 +144,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$wp_admin_bar->add_node( array(
 				'id' => 'om4-service-policy',
 				'title' => 'Service Policy',
-				'href' => "https://my.om4.com.au/knowledgebase/225/Service-Policy.html{$utm_variables}service-policy",
+				'href' => "https://om4.com.au/service-policy/{$utm_variables}service-policy",
 				'parent' => 'om4-service',
 				'meta'   => array(
 					'target' => '_blank'
