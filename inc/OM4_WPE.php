@@ -7,13 +7,14 @@
 class OM4_WPE extends OM4_Plugin_Base {
 
 	/**
-	 * WPE staging/development incompatible Plugins
+	 * A list of WordPress plugins that should be deactivated if running in WP Engine staging or development environment.
 	 *
 	 * @var array
 	 */
 	protected $watched_plugins = array(
 		'cdn-enabler/cdn-enabler.php',
 		'instantsearch-for-woocommerce/instantsearch-for-woocommerce.php',
+		'linksync/linksync.php',
 	);
 
 	/**
