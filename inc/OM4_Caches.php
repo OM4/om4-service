@@ -21,6 +21,9 @@ class OM4_Caches extends OM4_Plugin_Base {
 		// Whenever members only settings are changed
 		$this->actions[] = 'update_option_members_only_options';
 
+		// Whenever WordPress updates any plugins/themes/core/languages.
+		$this->actions[] = 'upgrader_process_complete';
+
 		// Allow other plugins to override the list of actions that should cause a cache flush
 		$this->actions = apply_filters( 'om4_cache_clear_actions', $this->actions );
 

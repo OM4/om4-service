@@ -33,6 +33,7 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 
 = 1.6.2 =
 * Add Linksync to the list of plugins that are incompatible with WP Engine staging / development environments.
+* Whenever WordPress updates any plugins/themes/core/languages, automatically purge all caches.
 
 = 1.6.1 =
 * Remove OM4 Services link from OM4 Service menu.

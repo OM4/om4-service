@@ -14,7 +14,7 @@ License: GPLv2
 
 /*
 
-   Copyright 2012-2019 OM4 (email: plugins@om4.com.au    web: https://om4.com.au/)
+   Copyright 2012-2020 OM4 (email: plugins@om4.com.au    web: https://om4.com.au/)
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
