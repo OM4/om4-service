@@ -34,6 +34,16 @@ class OM4_WPE extends OM4_Plugin_Base {
 		if ( ! is_admin() ) {
 			return;
 		}
+		// Defer everything to the admin_init hook
+		$this->hook( 'admin_init' );
+	}
+
+	/**
+	 * Executed during the admin_init hook
+	 *
+	 * @return void
+	 */
+	public function admin_init() {
 		// Check WPE staging via home_url().
 		$not_production       = false !== strpos( home_url(), '.wpengine.com' );
 		$this->active_plugins = $this->check_active_plugins();
