@@ -7,42 +7,43 @@
  */
 class OM4_Exclusions extends OM4_Plugin_Base {
 
-    /**
-     * List of page slugs to exclude from search results, and unauthenticated REST API queries for pages
-     * All sub-pages will be automatically excluded as well.
-     * @var array
-     */
-    protected $slugs_to_exclude = array(
-        '/admin/',
-        '/offers/'
-    );
+	/**
+	 * List of page slugs to exclude from search results, and unauthenticated REST API queries for pages
+	 * All sub-pages will be automatically excluded as well.
+	 *
+	 * @var array
+	 */
+	protected $slugs_to_exclude = array(
+		'/admin/',
+		'/offers/',
+	);
 
-    public function plugins_loaded() {
+	public function plugins_loaded() {
 			$this->filter( 'pre_get_posts', 9999999 );
 			$this->hook( 'save_post', 10, 2 );
 
 			$this->filter( 'rest_page_query', 10, 2 );
 			$this->filter( 'rest_attachment_query', 10, 2 );
 			$this->filter( 'rest_endpoints' );
-    }
+	}
 
 
-    /**
-     * Filter the list of pages/posts that are returned in a WordPress search.
-     *
-     * Executed by the 'pre_get_posts' filter
-     *
-     * @static
-     * @param $query
-     * @return query
-     */
-    public function pre_get_posts($query) {
-        if ( $query->is_search && !is_admin() ) {
-            // WordPress search
-            $query->set('post__not_in', $this->get_page_ids_to_exclude() );
-        }
-        return $query;
+	/**
+	 * Filter the list of pages/posts that are returned in a WordPress search.
+	 *
+	 * Executed by the 'pre_get_posts' filter
+	 *
+	 * @static
+	 * @param $query
+	 * @return query
+	 */
+	public function pre_get_posts( $query ) {
+		if ( $query->is_search && ! is_admin() ) {
+			// WordPress search
+			$query->set( 'post__not_in', $this->get_page_ids_to_exclude() );
 		}
+		return $query;
+	}
 
 	/**
 	 * Obtain the list of page IDs that should be excluded.
@@ -52,7 +53,8 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 	 * @return array List of page IDs
 	 */
 	protected function get_page_ids_to_exclude() {
-		if ( false !== $ids = get_transient( 'om4_page_ids_to_exclude' ) ) {
+		$ids = get_transient( 'om4_page_ids_to_exclude' );
+		if ( false !== $ids ) {
 			return $ids;
 		}
 		$page_ids_to_exclude = array();
@@ -65,10 +67,12 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 				$page_ids_to_exclude[] = $page->ID;
 
 				// Now fetch all sub pages (grandchildren) of this page (not just immediate descendants)
-				$children_data = get_pages( array(
+				$children_data = get_pages(
+					array(
 						'child_of'  => $page->ID,
-						'post_type' => 'page'
-				) );
+						'post_type' => 'page',
+					)
+				);
 
 				// Now exclude all sub pages
 				foreach ( $children_data as $child ) {
@@ -102,7 +106,7 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 	 */
 	public function rest_page_query( $args, $request ) {
 
-		if ( !isset($args['post__not_in']) ) {
+		if ( ! isset( $args['post__not_in'] ) ) {
 			$args['post__not_in'] = array();
 		}
 		foreach ( $this->get_page_ids_to_exclude() as $page_id ) {
@@ -146,6 +150,7 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 	 * Disable REST API User endpoints for non logged in users:
 	 * https://example.com/wp-json/wp/v2/users
 	 * https://example.com/wp-json/wp/v2/users/1
+	 *
 	 * @param $endpoints
 	 *
 	 * @return mixed
@@ -167,5 +172,3 @@ class OM4_Exclusions extends OM4_Plugin_Base {
 	}
 
 }
-
-

@@ -10,31 +10,31 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$this->hook( 'init' );
 
 		// Only for Authors (and above)
-		if ( current_user_can('edit_posts') && apply_filters('om4_wordpress_dashboard_om4_support', true) ) {
+		if ( current_user_can( 'edit_posts' ) && apply_filters( 'om4_wordpress_dashboard_om4_support', true ) ) {
 
 			// Display OM4 support desk button in WP Admin toolbar (both in the dashboard and on the website front end)
-			add_action( 'admin_bar_menu', array( __CLASS__ , 'admin_bar_menu'), 999 ) ;
+			add_action( 'admin_bar_menu', array( __CLASS__, 'admin_bar_menu' ), 999 );
 
 			// Don't display support desk feedback button on iframe/popup screens
-			if (! defined('IFRAME_REQUEST') && ! defined('DOING_AJAX') ) {
+			if ( ! defined( 'IFRAME_REQUEST' ) && ! defined( 'DOING_AJAX' ) ) {
 				// Display in WordPress dashboard
-				add_action( 'admin_print_footer_scripts', array( __CLASS__ , 'admin_print_footer_scripts') ) ;
+				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'admin_print_footer_scripts' ) );
 				// Display when viewing the WordPress website while logged in
-				add_action( 'wp_footer', array( __CLASS__ , 'admin_print_footer_scripts') ) ;
+				add_action( 'wp_footer', array( __CLASS__, 'admin_print_footer_scripts' ) );
 			}
-
 		}
 	}
 
 	public function init() {
-		if ( ! self::website_guide_page_id( false ) )
+		if ( ! self::website_guide_page_id( false ) ) {
 			add_action( 'save_post', array( __CLASS__, 'save_post' ), 10, 2 );
+		}
 	}
 
 	/**
 	 * Customise the WordPress 3.3 toolbar (admin bar).
 	 * Adds an orange "OM4 Service" menu.
-	 * Customises the items in the W (WordPres) menu.
+	 * Customises the items in the W (WordPress) menu.
 	 *
 	 * Ref: https://make.wordpress.org/core/2011/12/07/admin-bar-api-changes-in-3-3/
 	 *
@@ -42,137 +42,144 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 	 *
 	 * @param $wp_admin_bar
 	 */
-	public static function admin_bar_menu($wp_admin_bar) {
+	public static function admin_bar_menu( $wp_admin_bar ) {
 
 		// Google Analytics Link Tags
 		// Ref: https://support.google.com/urchin/answer/2633614?hl=en
-		$domain_name = str_replace( array('http://', 'https://'), '', site_url() );
+		$domain_name   = str_replace( array( 'http://', 'https://' ), '', site_url() );
 		$utm_variables = "?utm_source={$domain_name}&utm_medium=om4-service-button&utm_campaign=";
 
-		$wp_admin_bar->add_menu( array(
+		$wp_admin_bar->add_menu(
+			array(
 				'parent' => 'top-secondary',
 				'id'     => 'om4-service',
 				'title'  => 'OM4 Service',
-				'href'   => '#'
+				'href'   => '#',
 			)
 		);
 
 		// Add a link to the Website Guide page (if it exists)
 		$guide_page_url = self::website_guide_page_url();
-		if ( !empty( $guide_page_url ) ) {
-			$wp_admin_bar->add_node( array(
-					'id' => 'om4-service-website-guide',
-					'title' => 'Website Guide',
-					'href' => $guide_page_url,
+		if ( ! empty( $guide_page_url ) ) {
+			$wp_admin_bar->add_node(
+				array(
+					'id'     => 'om4-service-website-guide',
+					'title'  => 'Website Guide',
+					'href'   => $guide_page_url,
 					'parent' => 'om4-service',
 					'meta'   => array(
-						'target' => '_blank'
-					)
+						'target' => '_blank',
+					),
 				)
 			);
 		}
 
 		if ( class_exists( 'Vum' ) ) {
 			// Video User Manuals is activated.
-			$wp_admin_bar->add_node( array(
-					'id' => 'om4-service-videos',
-					'title' => 'How To Videos',
-					'href' => admin_url( 'admin.php?page=video-user-manuals/plugin.php' ),
-					'parent' => 'om4-service'
+			$wp_admin_bar->add_node(
+				array(
+					'id'     => 'om4-service-videos',
+					'title'  => 'How To Videos',
+					'href'   => admin_url( 'admin.php?page=video-user-manuals/plugin.php' ),
+					'parent' => 'om4-service',
 				)
 			);
 		}
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-articles',
-				'title' => 'How To Articles',
-				'href' => "https://my.om4.com.au/knowledgebase{$utm_variables}how-to-articles",
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-service-articles',
+				'title'  => 'How To Articles',
+				'href'   => "https://my.om4.com.au/knowledgebase{$utm_variables}how-to-articles",
 				'parent' => 'om4-service',
 				'meta'   => array(
-					'target' => '_blank'
-				)
+					'target' => '_blank',
+				),
 			)
 		);
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-ask-question',
-				'title' => 'Ask a How To Question',
-				'href' => "https://my.om4.com.au/submitticket.php{$utm_variables}ask-question",
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-service-ask-question',
+				'title'  => 'Ask a How To Question',
+				'href'   => "https://my.om4.com.au/submitticket.php{$utm_variables}ask-question",
 				'parent' => 'om4-service',
 				'meta'   => array(
-					'target' => '_blank'
-				)
+					'target' => '_blank',
+				),
 			)
 		);
 
-		$wp_admin_bar->add_node( array(
-						'id' => 'om4-virtual-assistant',
-						'title' => 'Request a Task',
-						'href' => "https://om4.com.au/services/clients/{$utm_variables}request-task",
-						'parent' => 'om4-service',
-						'meta'   => array(
-							'target' => '_blank'
-				)
-			)
-		);
-
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-webinars',
-				'title' => 'Webinars &amp; Masterclasses',
-				'href' => "https://om4.com.au/events/{$utm_variables}webinars",
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-virtual-assistant',
+				'title'  => 'Request a Task',
+				'href'   => "https://om4.com.au/services/clients/{$utm_variables}request-task",
 				'parent' => 'om4-service',
 				'meta'   => array(
-					'target' => '_blank'
-				)
+					'target' => '_blank',
+				),
 			)
 		);
 
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-webinars',
+				'title'  => 'Webinars &amp; Masterclasses',
+				'href'   => "https://om4.com.au/events/{$utm_variables}webinars",
+				'parent' => 'om4-service',
+				'meta'   => array(
+					'target' => '_blank',
+				),
+			)
+		);
 
 		if ( OM4_Service::is_wp_engine() ) {
-			$wp_admin_bar->add_node( array(
-					'id' => 'om4-wpe-hosting-security',
-					'title' => 'WP Engine Hosting &amp; Security',
-					'href' => "https://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
+			$wp_admin_bar->add_node(
+				array(
+					'id'     => 'om4-wpe-hosting-security',
+					'title'  => 'WP Engine Hosting &amp; Security',
+					'href'   => "https://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
 					'parent' => 'om4-service',
 					'meta'   => array(
-						'target' => '_blank'
-					)
+						'target' => '_blank',
+					),
 				)
 			);
 		}
 
-		$wp_admin_bar->add_node( array(
-				'id' => 'om4-service-policy',
-				'title' => 'Service Policy',
-				'href' => "https://om4.com.au/service-policy/{$utm_variables}service-policy",
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-service-policy',
+				'title'  => 'Service Policy',
+				'href'   => "https://om4.com.au/service-policy/{$utm_variables}service-policy",
 				'parent' => 'om4-service',
 				'meta'   => array(
-					'target' => '_blank'
-				)
+					'target' => '_blank',
+				),
 			)
 		);
 
-
 		// The default WordPress menu items
-		$default_wordpress_menu_items = array (
-			'wporg' => false,
+		$default_wordpress_menu_items = array(
+			'wporg'          => false,
 			'support-forums' => true,
-			'documentation' => true,
-			'feedback' => true
+			'documentation'  => true,
+			'feedback'       => true,
 		);
 
 		foreach ( $default_wordpress_menu_items as $node_id => $prepend_wordpress_org_to_title ) {
 			$node = $wp_admin_bar->get_node( $node_id );
 			$wp_admin_bar->remove_node( $node_id );
-			if ( $prepend_wordpress_org_to_title )
+			if ( $prepend_wordpress_org_to_title ) {
 				$node->title = 'WordPress.org ' . $node->title;
+			}
 			$wp_admin_bar->add_node( $node );
 		}
 	}
 
 	/**
 	 * Obtain/set the page ID of this website's Website Guide page.
-	 *
 	 *
 	 * Note: this data is cached for 7 days to help with performance.
 	 *
@@ -188,7 +195,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 				'/admin/guide/', // Latest URL format for guide page
 				'/admin/styling/', // Older sites use this URL
 				'/admin/style-guide/', // Some old sites may even use this URL
-				'/admin/guide.html' // Some sites may have the .html extension
+				'/admin/guide.html', // Some sites may have the .html extension
 			);
 			foreach ( $urls_to_try as $url ) {
 				$page_id = url_to_postid( $url );
@@ -249,8 +256,9 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		$guide_page_id = self::website_guide_page_id();
 		if ( $guide_page_id > 0 ) {
 			$guide_page_url = get_permalink( $guide_page_id );
-			if ( !empty( $guide_page_url ) )
+			if ( ! empty( $guide_page_url ) ) {
 				return $guide_page_url;
+			}
 		}
 		return '';
 	}
@@ -276,6 +284,6 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 		}
 		-->
 	</style>
-	<?php
+		<?php
 	}
 }

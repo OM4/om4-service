@@ -50,8 +50,10 @@ class OM4_WPE extends OM4_Plugin_Base {
 	 */
 	public function admin_notices() {
 		foreach ( $this->active_plugins as $plugin_file => $plugin_name ) {
-			$lead   = sprintf( __( 'The %s plugin is not compatible with this WP Engine environment.', 'om4-service' ), $plugin_name );
-			$url    = wp_nonce_url( self_admin_url( 'plugins.php?action=deactivate&plugin=' . $plugin_file . '&plugin_status=all' ), 'deactivate-plugin_' . $plugin_file );
+			// Translators: %s: A plugin name.
+			$lead = sprintf( __( 'The %s plugin is not compatible with this WP Engine environment.', 'om4-service' ), $plugin_name );
+			$url  = wp_nonce_url( self_admin_url( 'plugins.php?action=deactivate&plugin=' . $plugin_file . '&plugin_status=all' ), 'deactivate-plugin_' . $plugin_file );
+			// Translators: %s: A plugin name.
 			$action = sprintf( __( 'Deactivate %s' ), $plugin_name );
 			printf(
 				'<div class="notice notice-error">

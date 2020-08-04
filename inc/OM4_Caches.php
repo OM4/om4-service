@@ -28,7 +28,7 @@ class OM4_Caches extends OM4_Plugin_Base {
 		$this->actions = apply_filters( 'om4_cache_clear_actions', $this->actions );
 
 		foreach ( $this->actions as $action ) {
-			add_action( $action , 'OM4_Service::cache_flush', 10, 0 );
+			add_action( $action, 'OM4_Service::cache_flush', 10, 0 );
 		}
 
 	}
