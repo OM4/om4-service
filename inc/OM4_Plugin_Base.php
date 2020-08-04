@@ -6,7 +6,7 @@
  * - Makes it easy to override WordPress options.
  * - Makes it easy to override the output of WordPress dashboard screens.
  */
-class OM4_Plugin_Base {
+abstract class OM4_Plugin_Base {
 
 	public function __construct() {
 		$this->hook( 'plugins_loaded' );
@@ -17,9 +17,7 @@ class OM4_Plugin_Base {
 	 *
 	 * Executed during the plugins_loaded hook.
 	 */
-	public function plugins_loaded() {
-
-	}
+	abstract public function plugins_loaded();
 
 	/**
 	 * Hooks into the specified WordPress action/hook.
