@@ -74,6 +74,18 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 			);
 		}
 
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'om4-service-24-hour-tech-support',
+				'title'  => '24 Hour Technical Support',
+				'href'   => "https://om4.com.au/admin/24-hour-technical-support/{$utm_variables}24-hours-support",
+				'parent' => 'om4-service',
+				'meta'   => array(
+					'target' => '_blank',
+				),
+			)
+		);
+
 		if ( class_exists( 'Vum' ) ) {
 			// Video User Manuals is activated.
 			$wp_admin_bar->add_node(
@@ -139,7 +151,7 @@ class OM4_Service_Desk extends OM4_Plugin_Base {
 				array(
 					'id'     => 'om4-wpe-hosting-security',
 					'title'  => 'WP Engine Hosting &amp; Security',
-					'href'   => "https://my.om4.com.au/knowledgebase/322/WP-Engine-Overview-and-Recommended-Practices.html{$utm_variables}wpe-hosting-security",
+					'href'   => "https://om4.com.au/admin/wp-engine-overview-recommended-practices/{$utm_variables}wpe-hosting-security",
 					'parent' => 'om4-service',
 					'meta'   => array(
 						'target' => '_blank',
