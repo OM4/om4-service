@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="OM4 WordPress Simplified">
+    <description>OM4 Coding Standards for WordPress projects</description>
+
+    <!-- Set supported version same as the plugin itself -->
+    <config name="minimum_supported_wp_version" value="4.4"/>
+
+    <!-- Include the whole WordPress standard -->
+    <rule ref="WordPress">
+        <!-- Remove filename check -->
+        <exclude name="WordPress.Files.FileName"/>
+        <exclude name="Squiz.Commenting"/>
+    </rule>
+</ruleset>

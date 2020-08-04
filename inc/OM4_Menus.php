@@ -27,7 +27,7 @@ class OM4_Menus extends OM4_Plugin_Base {
 	 * @return array
 	 */
 	public function wp_nav_menu_args( $args ) {
-		if ( empty($args['link_before']) && empty($args['link_after']) ) {
+		if ( empty( $args['link_before'] ) && empty( $args['link_after'] ) ) {
 			$args['link_before'] = '<span>';
 			$args['link_after']  = '</span>';
 		}

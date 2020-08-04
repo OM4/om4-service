@@ -31,6 +31,16 @@ OM4 Service Desk integration. Also improves default WordPress functionality.
 
 == Changelog ==
 
+= 1.6.2 =
+* Add Linksync to the list of plugins that are incompatible with WP Engine staging / development environments.
+* Whenever WordPress updates any plugins/themes/core/languages, automatically purge all caches.
+* Fix undefined is_plugin_active() error.
+* Modify "WP Engine Hosting & Security" menu item target.
+* Add "24 Hour Technical Support" to the service menu.
+
+= 1.6.1 =
+* Remove OM4 Services link from OM4 Service menu.
+
 = 1.6 =
 * Use relative URLs in Beaver Builder’s dynamically generated CSS rules so that background images also load via a CDN.
 * Whenever OM4 Custom CSS rules are saved, also flush the Beaver Builder and WP Rocket caches.

@@ -7,13 +7,14 @@
 class OM4_WPE extends OM4_Plugin_Base {
 
 	/**
-	 * WPE staging/development incompatible Plugins
+	 * A list of WordPress plugins that should be deactivated if running in WP Engine staging or development environment.
 	 *
 	 * @var array
 	 */
 	protected $watched_plugins = array(
 		'cdn-enabler/cdn-enabler.php',
 		'instantsearch-for-woocommerce/instantsearch-for-woocommerce.php',
+		'linksync/linksync.php',
 	);
 
 	/**
@@ -33,6 +34,16 @@ class OM4_WPE extends OM4_Plugin_Base {
 		if ( ! is_admin() ) {
 			return;
 		}
+		// Defer everything to the admin_init hook
+		$this->hook( 'admin_init' );
+	}
+
+	/**
+	 * Executed during the admin_init hook
+	 *
+	 * @return void
+	 */
+	public function admin_init() {
 		// Check WPE staging via home_url().
 		$not_production       = false !== strpos( home_url(), '.wpengine.com' );
 		$this->active_plugins = $this->check_active_plugins();
@@ -49,8 +60,10 @@ class OM4_WPE extends OM4_Plugin_Base {
 	 */
 	public function admin_notices() {
 		foreach ( $this->active_plugins as $plugin_file => $plugin_name ) {
-			$lead   = sprintf( __( 'The %s plugin is not compatible with this WP Engine environment.', 'om4-service' ), $plugin_name );
-			$url    = wp_nonce_url( self_admin_url( 'plugins.php?action=deactivate&plugin=' . $plugin_file . '&plugin_status=all' ), 'deactivate-plugin_' . $plugin_file );
+			// Translators: %s: A plugin name.
+			$lead = sprintf( __( 'The %s plugin is not compatible with this WP Engine environment.', 'om4-service' ), $plugin_name );
+			$url  = wp_nonce_url( self_admin_url( 'plugins.php?action=deactivate&plugin=' . $plugin_file . '&plugin_status=all' ), 'deactivate-plugin_' . $plugin_file );
+			// Translators: %s: A plugin name.
 			$action = sprintf( __( 'Deactivate %s' ), $plugin_name );
 			printf(
 				'<div class="notice notice-error">

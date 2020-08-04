@@ -5,9 +5,8 @@
  * - Provides a shorter/simpler syntax for using hooks/filters.
  * - Makes it easy to override WordPress options.
  * - Makes it easy to override the output of WordPress dashboard screens.
- *
  */
-class OM4_Plugin_Base {
+abstract class OM4_Plugin_Base {
 
 	public function __construct() {
 		$this->hook( 'plugins_loaded' );
@@ -18,9 +17,7 @@ class OM4_Plugin_Base {
 	 *
 	 * Executed during the plugins_loaded hook.
 	 */
-	public function plugins_loaded() {
-
-	}
+	abstract public function plugins_loaded();
 
 	/**
 	 * Hooks into the specified WordPress action/hook.
@@ -62,8 +59,9 @@ class OM4_Plugin_Base {
 	 */
 	protected function override_dashboard_screen_content( $screen_name ) {
 		$function_name_that_needs_implementing = 'dashboard_screen_' . $screen_name;
-		if ( !method_exists( $this, $function_name_that_needs_implementing ) )
+		if ( ! method_exists( $this, $function_name_that_needs_implementing ) ) {
 			throw new Exception( get_class( $this ) . '::' . $function_name_that_needs_implementing . "() must exist if you would like to override the $screen_name dashboard screen." );
+		}
 
 		add_action( 'load-' . $screen_name, array( $this, 'init_dashboard_screen_override_' . $screen_name ) );
 	}
@@ -81,8 +79,9 @@ class OM4_Plugin_Base {
 	 */
 	protected function override_option( $option_name ) {
 		$function_name_that_needs_implementing = 'option_' . $option_name;
-		if ( !method_exists( $this, $function_name_that_needs_implementing ) )
+		if ( ! method_exists( $this, $function_name_that_needs_implementing ) ) {
 			throw new Exception( get_class( $this ) . '::' . $function_name_that_needs_implementing . "() must exist if you would like to override the $option_name option." );
+		}
 
 		add_action( 'pre_option_' . $option_name, array( $this, 'pre_option_' . $option_name ) );
 	}
@@ -98,8 +97,9 @@ class OM4_Plugin_Base {
 	 */
 	protected function filter_option( $option_name ) {
 		$function_name_that_needs_implementing = 'filter_option_' . $option_name;
-		if ( !method_exists( $this, $function_name_that_needs_implementing ) )
+		if ( ! method_exists( $this, $function_name_that_needs_implementing ) ) {
 			throw new Exception( get_class( $this ) . '::' . $function_name_that_needs_implementing . "() must exist if you would like to filter the $option_name option value." );
+		}
 
 		add_action( 'option_' . $option_name, array( $this, 'filter_option_' . $option_name ) );
 	}
@@ -115,8 +115,9 @@ class OM4_Plugin_Base {
 	 */
 	protected function override_default_option( $option_name ) {
 		$function_name_that_needs_implementing = 'default_option_' . $option_name;
-		if ( !method_exists( $this, $function_name_that_needs_implementing ) )
+		if ( ! method_exists( $this, $function_name_that_needs_implementing ) ) {
 			throw new Exception( get_class( $this ) . '::' . $function_name_that_needs_implementing . "() must exist if you would like to override the default value of the $option_name option." );
+		}
 
 		add_action( 'default_option_' . $option_name, array( $this, 'default_option_' . $option_name ) );
 	}
@@ -147,26 +148,25 @@ class OM4_Plugin_Base {
 
 			$this->init_dashboard_screen_override( str_replace( 'init_dashboard_screen_override_', '', $function_name ) );
 
-		} else if ( 0 === strpos( $function_name, 'pre_option_' ) ) {
+		} elseif ( 0 === strpos( $function_name, 'pre_option_' ) ) {
 
 			// Option Value Overriding
 
-			$option_name = str_replace( 'pre_option_', '', $function_name );
+			$option_name      = str_replace( 'pre_option_', '', $function_name );
 			$function_to_call = 'option_' . $option_name;
 			return call_user_func_array( array( $this, $function_to_call ), $args );
 
-		} else if ( 0 === strpos( $function_name, 'default_option_' ) ) {
+		} elseif ( 0 === strpos( $function_name, 'default_option_' ) ) {
 
 			// Default Option Value Overriding
 
-			$option_name = str_replace( 'default_option_', '', $function_name );
+			$option_name      = str_replace( 'default_option_', '', $function_name );
 			$function_to_call = 'default_option_' . $option_name;
 			return call_user_func_array( array( $this, $function_to_call ), $args );
 
-		} else {
-
-			// Unknown method calling
 		}
+
+		// Do nothing for unknown method calling
 
 	}
 

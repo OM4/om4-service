@@ -13,7 +13,7 @@ class OM4_Imsanity extends OM4_Plugin_Base {
 		'imsanity_max_width_library',
 		'imsanity_max_height_library',
 		'imsanity_max_width_other',
-		'imsanity_max_height_other'
+		'imsanity_max_height_other',
 	);
 
 	public function plugins_loaded() {
