@@ -82,6 +82,7 @@ class OM4_Service {
 		$this->load( 'OM4_BeaverBuilder.php' );
 		$this->load( 'OM4_Caches.php' );
 		$this->load( 'OM4_Comments.php' );
+		$this->load( 'OM4_Disable_Builtin_Sitemap.php' );
 		$this->load( 'OM4_Header.php' );
 		$this->load( 'OM4_Imsanity.php' );
 		$this->load( 'OM4_Menus.php' );
