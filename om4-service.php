@@ -3,7 +3,7 @@
 Plugin Name: OM4 Service
 Plugin URI: https://om4.com.au/plugins/
 Description: Adds the OM4 Service orange button to the WordPress dashboard. Also improves default WordPress functionality.
-Version: 1.6.2
+Version: 1.7.0
 Author: OM4
 Author URI: https://om4.com.au/plugins/
 Text Domain: om4-service
@@ -82,6 +82,7 @@ class OM4_Service {
 		$this->load( 'OM4_BeaverBuilder.php' );
 		$this->load( 'OM4_Caches.php' );
 		$this->load( 'OM4_Comments.php' );
+		$this->load( 'OM4_Disable_Builtin_Sitemap.php' );
 		$this->load( 'OM4_Header.php' );
 		$this->load( 'OM4_Imsanity.php' );
 		$this->load( 'OM4_Menus.php' );
